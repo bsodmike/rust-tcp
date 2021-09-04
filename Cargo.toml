@@ -1,0 +1,12 @@
+[package]
+name = "trust"
+version = "0.1.0"
+authors = ["Michael de Silva <michael@mwdesilva.com>"]
+edition = "2018"
+
+[dependencies]
+tun-tap = "0.1.2"
+etherparse = "0.8"
+bitflags = "1.0"
+nix = "0.13"
+
