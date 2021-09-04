@@ -44,7 +44,6 @@ fn main() -> io::Result<()> {
                             })
                             .or_default()
                             .on_packet(iph, tcph, &buf[datai..nbytes]);
-                        // (srcip, srcport, dstip. dstport)
                     }
                     Err(e) => {
                         eprintln!("ignoring weird tcp packet {:?}", e);
