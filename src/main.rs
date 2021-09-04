@@ -34,7 +34,7 @@ fn main() -> io::Result<()> {
                     continue;
                 }
 
-                match etherparse::TcpHeaderSlice::from_slice(&buf[4 + iph.slice().len()..]) {
+                match etherparse::TcpHeaderSlice::from_slice(&buf[4 + iph.slice().len()..nbytes]) {
                     Ok(tcph) => {
                         let datai = 4 + iph.slice().len() + tcph.slice().len();
                         connections
@@ -43,7 +43,7 @@ fn main() -> io::Result<()> {
                                 dst: (dst, tcph.destination_port()),
                             })
                             .or_default()
-                            .on_packet(iph, tcph, &buf[datai..]);
+                            .on_packet(iph, tcph, &buf[datai..nbytes]);
                         // (srcip, srcport, dstip. dstport)
                     }
                     Err(e) => {
