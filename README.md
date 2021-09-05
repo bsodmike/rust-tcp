@@ -1,6 +1,10 @@
 # rust-tcp
 
-"A learning experience in implementing TCP in Rust"
+"A learning experience in implementing TCP in Rust" by implementing a user-space
+TCP stack, using a TUN/TAP interface.  The kernel gives user-space processes
+access to network packets.
+
+Rather than reinventing the wheel, a popular crate called [etherparse](https://github.com/JulianSchmid/etherparse) is used to take care of parsing and managing lower-level structs related to Ipv4.
 
 This codebase covers my progress in following along with the video series ["Implementing TCP in Rust"](https://youtu.be/bzja9fQWzdA) by [Jon Gjengset](https://github.com/jonhoo)
 
