@@ -34,6 +34,7 @@ fn main() -> io::Result<()> {
                 let src = iph.source_addr();
                 let dst = iph.destination_addr();
                 if iph.protocol() != 0x06 {
+                    eprintln!("BAD PROTOCOL: Not TCP!!");
                     // not tcp
                     continue;
                 }
@@ -50,7 +51,7 @@ fn main() -> io::Result<()> {
                                 c.get_mut()
                                     .on_packet(&mut nic, iph, tcph, &buf[datai..nbytes])?;
                             }
-                            Entry::Vacant(mut e) => {
+                            Entry::Vacant(e) => {
                                 if let Some(c) = tcp::Connection::accept(
                                     &mut nic,
                                     iph,
@@ -68,7 +69,7 @@ fn main() -> io::Result<()> {
                 }
             }
             Err(e) => {
-                //eprintln!("ignoring weird packet {:?}", e);
+                eprintln!("ignoring weird packet {:?}", e);
             }
         }
     }
